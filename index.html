@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Bookshop</title>
+  </head>
+  <body onload="onInit()">
+    <header><h1>Bookshop</h1></header>
+    <div class="page-container">
+      <section class="book-filter">
+        <div class="min-rating">
+          <label>
+            Min Rating (0-10):
+            <input
+              type="range"
+              min="0"
+              max="10"
+              value="0"
+              onchange="this.title=this.value;onSetFilterBy({minRate: + this.value})"
+              class="rate-slider"
+              oninput="onRateChange(this.value)"
+            />
+          </label>
+          <span class="min-range-value"></span>
+        </div>
+
+        <label>
+          Max Price (1-100):
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="100"
+            onchange="this.title=this.value;onSetFilterBy({maxPrice: + this.value})"
+            class="price-slider"
+            oninput="onPriceChange(this.value)"
+          />
+        </label>
+        <span class="max-price-value"></span>
+        <input
+          type="text"
+          class="search-box"
+          oninput="onSetFilterBy({searchQuery: value})"
+          placeholder="Search by title"
+        />
+        <button class="add-btn" onclick="onAddBook()">Add</button>
+      </section>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th colspan="3">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-body"></tbody>
+        </table>
+      </div>
+      <div class="nav">
+        <button class="prev" onclick="onPrevPage()">prev</button>
+
+        <button class="next" onclick="onNextPage()">next</button>
+      </div>
+      <div class="modal"></div>
+
+      <div class="user-msg"></div>
+    </div>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/book.service.js"></script>
+    <script src="js/books.controller.js"></script>
+  </body>
+</html>
