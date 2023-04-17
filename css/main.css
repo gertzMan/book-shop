@@ -5,6 +5,10 @@ body {
   overflow-x: hidden;
   background-color: #f8f9fa;
 }
+body.rtl {
+  direction: rtl;
+}
+
 td,
 th {
   border: 1px solid #777;

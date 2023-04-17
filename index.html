@@ -9,12 +9,12 @@
     <title>Bookshop</title>
   </head>
   <body onload="onInit()">
-    <header><h1>Bookshop</h1></header>
+    <header><h1 data-trans="title">Book inventory</h1></header>
     <div class="page-container">
       <section class="book-filter">
         <div class="min-rating">
           <label>
-            Min Rating (0-10):
+            <span data-trans="minRating">Min rating (1-10) </span>
             <input
               type="range"
               min="0"
@@ -29,7 +29,7 @@
         </div>
 
         <label>
-          Max Price (1-100):
+          <span data-trans="maxPrice">Max Price (1-100):</span>
           <input
             type="range"
             min="1"
@@ -42,31 +42,44 @@
         </label>
         <span class="max-price-value"></span>
         <input
+          data-trans="placeholder"
           type="text"
           class="search-box"
           oninput="onSetFilterBy({searchQuery: value})"
           placeholder="Search by title"
         />
-        <button class="add-btn" onclick="onAddBook()">Add</button>
+        <button class="add-btn" data-trans="addBtn" onclick="onAddBook()">
+          Add
+        </button>
       </section>
+      <div class="lang-select">
+        <select onchange="onSetLang(this.value)">
+          <option value="en">English</option>
+          <option value="he">עברית</option>
+        </select>
+      </div>
 
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th colspan="3">Actions</th>
+              <th data-trans="bookId">Id</th>
+              <th data-trans="bookTitle">Title</th>
+              <th data-trans="bookPrice">Price</th>
+              <th colspan="3" data-trans="bookActions">Actions</th>
             </tr>
           </thead>
           <tbody class="table-body"></tbody>
         </table>
       </div>
       <div class="nav">
-        <button class="prev" onclick="onPrevPage()">prev</button>
+        <button class="prev" data-trans="prev" onclick="onPrevPage()">
+          prev
+        </button>
 
-        <button class="next" onclick="onNextPage()">next</button>
+        <button class="next" data-trans="next" onclick="onNextPage()">
+          next
+        </button>
       </div>
       <div class="modal"></div>
 
@@ -74,6 +87,9 @@
     </div>
     <script src="js/services/util.service.js"></script>
     <script src="js/services/book.service.js"></script>
+    <script src="js/services/i18n.service.js"></script>
+    <script src="lib/hammer.min.js"></script>
+
     <script src="js/books.controller.js"></script>
   </body>
 </html>

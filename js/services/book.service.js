@@ -23,7 +23,9 @@ function getBooks() {
       gFilterBy.searchQuery.test(book.title)
   )
   const startIdx = gPageIdx * PAGE_SIZE
-  return books.slice(startIdx, startIdx + PAGE_SIZE)
+  const res = books.slice(startIdx, startIdx + PAGE_SIZE)
+  setNextPrevId(res)
+  return res
 }
 
 function _createBook(title, price = getRandomIntInclusive(1, 100)) {
@@ -113,4 +115,15 @@ function setBookFilter(filterBy) {
     gFilterBy.searchQuery = new RegExp(filterBy.searchQuery, 'i')
 
   return gFilterBy
+}
+
+function setNextPrevId(books) {
+  for (var i = 0; i < books.length; i++) {
+    if (i !== books.length - 1) {
+      books[i].nextBookId = books[i + 1].id
+    }
+    if (i !== 0) {
+      books[i].prevBookId = books[i - 1].id
+    }
+  }
 }
